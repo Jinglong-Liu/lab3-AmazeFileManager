@@ -98,7 +98,8 @@
     <string name="delete">Delete</string>
     <string name="set_as_home">Set As Home</string>
     <string name="operation_not_supported">Operation not supported</string>
-
+    <string name="modify_home">Modify Home</string>
+    <string name="file_cannot_be_home">can not set file as home</string>
     <!-- New -->
     <!-- Array -->
 
@@ -723,4 +724,3 @@ You only need to do this once, until the next time you select a new location for
     <string name="signin_with_google_title">Authenticate to use Google Drive™</string>
     <string name="show_system_apps">Show system apps</string>
 </resources>
-

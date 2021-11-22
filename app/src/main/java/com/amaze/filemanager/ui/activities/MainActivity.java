@@ -1192,6 +1192,19 @@ public class MainActivity extends PermissionsActivity
             case R.id.search:
               getAppbar().getSearchView().revealSearchView();
               break;
+            case R.id.modifyhome:
+              mainFragment.modifyHome();
+
+              //if (mainFragment.getMainFragmentViewModel().getOpenMode() != OpenMode.FILE
+              //        && mainFragment.getMainFragmentViewModel().getOpenMode() != OpenMode.ROOT) {
+              //  Toast.makeText(mainActivity, R.string.not_allowed, Toast.LENGTH_SHORT).show();
+              //  break;
+              //}
+              //mainFragment
+              //        .getMainFragmentViewModel()
+              //        .setHome(mainFragment.getCurrentPath());
+              //updatePaths(mainFragment.getMainFragmentViewModel().getNo());
+              break;
           }
           return null;
         },

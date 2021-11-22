@@ -65,5 +65,8 @@
         android:id="@+id/exit"
         android:title="@string/exit"
         android:orderInCategory="100"/>
+    <item
+        android:id="@+id/modifyhome"
+        android:title="@string/modify_home"/>
 
 </menu>
