@@ -20,8 +20,8 @@ jobs:
         with:
           distribution: "adopt"
           java-version: 8.0.232
-      - name: Check formatting using spotless
-        run: ./gradlew spotlessCheck --stacktrace
+      #- name: Check formatting using spotless
+      #  run: ./gradlew spotlessCheck --stacktrace
       - name: Build with Gradle
         run: |
           ./gradlew assembledebug --stacktrace
