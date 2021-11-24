@@ -20,10 +20,18 @@ jobs:
         with:
           distribution: "adopt"
           java-version: 8.0.232
-      #- name: Check formatting using spotless
-      #  run: ./gradlew spotlessCheck --stacktrace
+      - name: Check formatting using spotless
+        run: ./gradlew spotlessCheck --stacktrace
       - name: Build with Gradle
         run: |
           ./gradlew assembledebug --stacktrace
         env:
           TZ: UTC
+      - name: Run test cases
+        run: ./gradlew jacocoTestPlayDebugUnitTestReport
+        env:
+          TZ: UTC
+      - name: Publish test cases
+        run: |
+          export CODACY_PROJECT_TOKEN=${{ secrets.CODACY_TOKEN }}
+          bash <(curl -Ls https://coverage.codacy.com/get.sh)
