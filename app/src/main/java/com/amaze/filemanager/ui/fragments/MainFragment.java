@@ -1345,55 +1345,57 @@ public class MainFragment extends Fragment
         });
   }
 
-  public void modifyHome(){
+  public void modifyHome() {
     MaterialDialog setRootDialog =
-            GeneralDialogCreation.showNameDialog(
-                    getMainActivity(),
-                    getCurrentPath(),
-                    getCurrentPath(),
-                    getResources().getString(R.string.modify_home),
-                    getResources().getString(R.string.modified),
-                    null,
-                    getResources().getString(R.string.cancel),
-                    (dialog, which) -> {
-                      EditText textfield = dialog.getCustomView().findViewById(R.id.singleedittext_input);
-                      String name1 = textfield.getText().toString().trim();
-                      System.out.println(RootHelper.fileExists(name1));
-                      System.out.println(new HybridFile(OpenMode.FILE,name1).exists());
-                      mainFragmentViewModel.setHome(name1);
-                    },
-                    (text) -> {
-                      //TODO:check valid path name
-                      boolean isValidFilename = true;
-                      if (!isValidFilename || !text.startsWith("/")) {
-                        return new WarnableTextInputValidator.ReturnState(
-                                WarnableTextInputValidator.ReturnState.STATE_ERROR, R.string.invalid_name);
-                      } else if (text.length() < 1) {
-                        return new WarnableTextInputValidator.ReturnState(
-                                WarnableTextInputValidator.ReturnState.STATE_ERROR, R.string.field_empty);
-                      }
-                      else if(!RootHelper.fileExists(text) && !(new HybridFile(OpenMode.FILE,text).isDirectory())){
-                        return new WarnableTextInputValidator.ReturnState(
-                                WarnableTextInputValidator.ReturnState.STATE_ERROR, R.string.error_file_not_found);
-                      }
-                      else if(RootHelper.fileExists(text) && !(new HybridFile(OpenMode.FILE,text).isDirectory())){
-                        return new WarnableTextInputValidator.ReturnState(
-                               WarnableTextInputValidator.ReturnState.STATE_ERROR, R.string.file_cannot_be_home);
-                      }
-                      return new WarnableTextInputValidator.ReturnState();
-                    });
+        GeneralDialogCreation.showNameDialog(
+            getMainActivity(),
+            getCurrentPath(),
+            getCurrentPath(),
+            getResources().getString(R.string.modify_home),
+            getResources().getString(R.string.modified),
+            null,
+            getResources().getString(R.string.cancel),
+            (dialog, which) -> {
+              EditText textfield = dialog.getCustomView().findViewById(R.id.singleedittext_input);
+              String name1 = textfield.getText().toString().trim();
+              System.out.println(RootHelper.fileExists(name1));
+              System.out.println(new HybridFile(OpenMode.FILE, name1).exists());
+              mainFragmentViewModel.setHome(name1);
+            },
+            (text) -> {
+              // TODO:check valid path name
+              boolean isValidFilename = true;
+              if (!isValidFilename || !text.startsWith("/")) {
+                return new WarnableTextInputValidator.ReturnState(
+                    WarnableTextInputValidator.ReturnState.STATE_ERROR, R.string.invalid_name);
+              } else if (text.length() < 1) {
+                return new WarnableTextInputValidator.ReturnState(
+                    WarnableTextInputValidator.ReturnState.STATE_ERROR, R.string.field_empty);
+              } else if (!RootHelper.fileExists(text)
+                  && !(new HybridFile(OpenMode.FILE, text).isDirectory())) {
+                return new WarnableTextInputValidator.ReturnState(
+                    WarnableTextInputValidator.ReturnState.STATE_ERROR,
+                    R.string.error_file_not_found);
+              } else if (RootHelper.fileExists(text)
+                  && !(new HybridFile(OpenMode.FILE, text).isDirectory())) {
+                return new WarnableTextInputValidator.ReturnState(
+                    WarnableTextInputValidator.ReturnState.STATE_ERROR,
+                    R.string.file_cannot_be_home);
+              }
+              return new WarnableTextInputValidator.ReturnState();
+            });
 
     // place cursor at the starting of edit text by posting a runnable to edit text
     // this is done because in case android has not populated the edit text layouts yet, it'll
     // reset calls to selection if not posted in message queue
     EditText textfield = setRootDialog.getCustomView().findViewById(R.id.singleedittext_input);
     textfield.post(
-            () -> {
-              //if (!f.isDirectory()) {
-                //textfield.setSelection(f.getNameString(getContext()).length());
-              //}
-              System.out.println("post");
-            });
+        () -> {
+          // if (!f.isDirectory()) {
+          // textfield.setSelection(f.getNameString(getContext()).length());
+          // }
+          // System.out.println("post");
+        });
   }
 
   public void computeScroll() {
